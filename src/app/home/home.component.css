@@ -1,3 +1,9 @@
+.section
+{
+  padding-top: 6vw;
+  padding-bottom: 4vw; 
+}
+
 .home-buttons{
   margin-top: 50%;
 }
