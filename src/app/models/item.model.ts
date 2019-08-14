@@ -2,6 +2,9 @@ import { UserMin } from './userMin.model';
 
 export class Item {
     id: string;
+    title: string;
+    location: string;
+    date: any;
     imageUrl: string;
     lostOrFound: string;
     category: string;

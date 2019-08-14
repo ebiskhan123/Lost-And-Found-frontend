@@ -4,9 +4,18 @@
   </div>
   <div class="col s12 l6 offset-l1 valign-wrapper">
   <div>
-    <h2 class="light-green-text text-darken-3">Tokyo</h2>
-    <h5 class="grey-text">07-08-2019</h5>
-    <p >Make sure to drop in guys. Looking forward to see you all</p>
+    <h3 class="light-green-text text-darken-3">{{item.title}}</h3>
+    <div class="truncated">{{item.description}}</div>
+    <a href="" class="btn light-green lighten-5 z-depth-0">
+      <i class="material-icons left">class</i>
+      {{item.category}}
+    </a>
+    <div *ngFor="let tag of item.tags" class="chip right">{{tag}}</div>
+    <h5><span class="green-text" *ngIf="item.lostOrFound=='Found'">Found</span>
+    <span class="red-text" *ngIf="item.lostOrFound=='Lost'">Lost </span>
+    <span class="grey-text">&nbsp;&nbsp;{{item.date}}</span></h5>
+    <h6>{{item.location}}</h6>
   </div>
   </div>
 </div>
+<div class="divider light-green darken-3"></div>

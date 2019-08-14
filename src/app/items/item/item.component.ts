@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Item} from '../../models/item.model';
 @Component({
   selector: 'app-item',
@@ -6,9 +6,8 @@ import {Item} from '../../models/item.model';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
-  item: Item;
-  constructor() { 
-    this.item =   <Item>{id:'agagag', imageUrl:'../../assets/images/keys.jpg', lostOrFound:'Found', category:'Keys', description:"kill me twice", tags:["bike key", "yamaha", "no keychain"]};    
+  @Input('item') item: Item;
+  constructor() {
   }
 
   ngOnInit() {
