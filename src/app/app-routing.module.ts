@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ItemsComponent } from './items/items.component';
+import { AddItemComponent } from './add-item/add-item.component'
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'lostItems', component: ItemsComponent},  
   {path: 'foundItems', component: ItemsComponent},  
   {path: 'items', component: ItemsComponent},  
+  {path: 'addItem', component: AddItemComponent},  
 ];
 
 @NgModule({
@@ -22,4 +24,4 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 
-export const routingComponents = [HomeComponent, SignInComponent, SignUpComponent];
+export const routingComponents = [HomeComponent, SignInComponent, SignUpComponent, AddItemComponent];
