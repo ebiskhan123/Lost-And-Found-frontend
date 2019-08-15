@@ -2,5 +2,13 @@
 .section
 {
     padding-top:4vw;
+    padding-bottom:4vw;
     min-height: 70vh;
+}
+
+.btn
+{
+    min-width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
 }

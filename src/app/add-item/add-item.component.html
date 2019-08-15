@@ -13,46 +13,64 @@
         <label for="descriptionInput">Description</label>
         <span class="helper-text">Describe the item here, include specifics such as color, reference number, etc. Avoid sensitive informations</span>
       </div>
+      <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix">date_range</i>
         <input type="date" id="dateInput" name="date">
         <label for="dateInput">Date</label>
         <span class="helper-text">Lost or Found Date</span>
       </div>
-      <div class="input-field light-green lighten-5 col s4 offset-s1">
+      <div class="input-field transparent col s4 offset-s1">
         <select name = "lostOrFound" class="browser-default light-green lighten-5">
             <option value="" disabled selected>Lost or Found</option>
             <option value="Lost" class="red-text">Lost</option>
             <option value="Found" class="green-text">Found</option>
           </select>
       </div>
-
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">room</i>
+        <input type="text" id="placeInput" name="location">
+        <label for="placeInput">Place</label>
+        <span class="helper-text">For example, "Near Statue of Liberty, NY"</span>
+      </div>
     </div>
-    <div class="col s12 l5 center-align">
-      <div class="input-field">
-        <i class="material-icons prefix">person</i>
-        <input type="text" id="nameInput" name="name">
-        <label for="nameInput">Name</label>
+    <div class="col s12 l6">
+      <div class="row">
+        <div class="col s3">
+          <img src="../../assets/images/noImage.jpg" alt="" class="responsive-img display-image z-depth-1">
+        </div>
+        <div class="input-field col s5 valign-wrapper">
+          <input type="file" id="imageInput" name="image">
+        </div>
       </div>
-      <div class="input-field">
-        <i class="material-icons prefix">email</i>
-        <input type="email" id="emailInput" name="email">
-        <label for="emailInput">Email</label>
+      <div class="row">
+        <div class="input-field transparent col s4">
+          <select name = "category" class="browser-default light-green lighten-5">
+              <option value="" disabled selected>Category</option>
+              <option value="Keys" class="">Keys</option>
+              <option value="Wallets" class="">Wallets</option>
+              <option value="Documents" class="">Documents</option>
+              <option value="Bags" class="">Bags</option>
+              <option value="Others" class="">Others</option>
+            </select>
+        </div>
+        <div class="input-field col s6 offset-s1">
+          <i class="material-icons prefix">loyalty</i>
+          <input type="text" id="tagsInput" name="tags">
+          <label for="tagsInput">Tags</label>
+          <span class="helper-text">Press Enter to add tag</span>        
+        </div>
       </div>
-      <div class="input-field">
-        <i class="material-icons prefix">lock_open</i>
-        <input type="password" id="passwordInput" name="password">
-        <label for="passwordInput">Password</label>
-      </div>
-      <div class="input-field">
-        <i class="material-icons prefix">lock</i>
-        <input type="password" id="confirmPasswordInput" name="confirmPassword">
-        <label for="confirmPasswordInput">Confirm Password</label>
-      </div>
-      <div class="input-field center">
-        <button class="btn light-green darken-3 white-text">Sign Up</button>
+      <div class="center">
+        <div class="chip">dummy<i class="close material-icons">close</i></div>
+        <div class="chip">fake<i class="close material-icons">close</i></div>
       </div>
       </div>
+    </div>
+    <div class="center">
+      <div class="btn">Cancel</div>
+      <div class="btn light-green darken-3">Save</div>
     </div>
   </div>
   
