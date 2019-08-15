@@ -1,4 +1,4 @@
-import { UserMin } from './userMin.model';
+import { User } from './user.model';
 
 export class Item {
     id: string;
@@ -6,7 +6,7 @@ export class Item {
     lostOrFound: string;
     category: string;
     description: string;
-    postedBy: UserMin;
+    postedBy: User;
     tags: string[];
 }
 

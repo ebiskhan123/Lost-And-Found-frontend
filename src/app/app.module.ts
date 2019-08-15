@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ItemsModule } from './items/items.module'
+
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { ItemsModule } from './items/items.module'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ItemsModule
+    ItemsModule,
+    HttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
