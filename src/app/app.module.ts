@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ItemsModule } from './items/items.module';
+import { DashboardModule } from './dashboard/dashboard.module'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ItemsModule } from './items/items.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ItemsModule
+    ItemsModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

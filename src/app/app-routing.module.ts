@@ -4,6 +4,8 @@ import { HomeComponent } from './home/home.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ItemsComponent } from './items/items.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+
 import { AddItemComponent } from './add-item/add-item.component'
 
 const routes: Routes = [
@@ -15,6 +17,7 @@ const routes: Routes = [
   {path: 'foundItems', component: ItemsComponent},  
   {path: 'items', component: ItemsComponent},  
   {path: 'addItem', component: AddItemComponent},  
+  {path: 'dashboard', component: DashboardComponent},  
 ];
 
 @NgModule({
