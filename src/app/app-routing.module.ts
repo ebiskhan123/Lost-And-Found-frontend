@@ -5,11 +5,11 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ItemsComponent } from './items/items.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
-
-import { AddItemComponent } from './add-item/add-item.component'
+import { AddItemComponent } from './add-item/add-item.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent},  
   {path: 'signIn', component: SignInComponent},  
   {path: 'signUp', component: SignUpComponent},  
