@@ -1,66 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import User from './models/user.model';
+import { User } from '../models/user.model';
 import 'rxjs/Rx';
-import Observable from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemsService {
-  private const serverurl: string = 'url'
+  private serverurl: string = 'url'
 
-  constructor(private http: Htttp) { }
+  constructor(private http: Http) { }
 
-  getItems(location: string, category: string, lostorfound: string){
-    let url:string = serverurl;
-    if(location!=null){
-      url +='?location='+location;
+  getItems(location: string, category: string, lostOrFound: string){
+    let url:string = this.serverurl;
+    if(location||category||lostOrFound)
+      {
+        url += '?';
+      }
+    if(location) {
+      url += 'location=' + location + '&';
     }
-    if(category!=null){
-      if(url.indexOf('?') > -1){
-        url += '&category='+category;
-      }
-      else{
-        url +='?category='+category;
-      }
+    if(category) {
+        url += 'category=' + category + '&';
     }
-    if(lostorfound!=null){
-      if(url.indexOf('?') > -1){
-        url += '&lostorfound='+lostorfound;
-      }
-      else{
-        url +='?lostorfound='+lostorfound;
-      }
+    if(lostOrFound) {
+        url += 'lostorfound=' + lostOrFound;
     }
-    return getItemsAjax(url);
+    return this.getItemsAjax(url);
   }
 
   getItemsAjax(url:string) {
-    return this.http.get(url, user).map(
-      (response: Response) => {
-        const data = response.json();
-        return data;
-      }
-    ).catch(
-      (error: Response) => {
-        return Observable.throw("Error occured");
-      }
-    );
+    return this.http.get(url);
   }
 
 
   addItems(item: any[]) {
-    return this.http.post(loginurl, item).map(
-      (response: Response) => {
-        const data = response.json();
-        return data;
-      }
-    ).catch(
-      (error: Response) => {
-        return Observable.throw("Error occured");
-      }
-    );
+    return this.http.post(this.serverurl, item);
   }
 }
