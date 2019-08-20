@@ -3,25 +3,25 @@
     <div class="col s12 l5">
       <div class="input-field">
         <i class="material-icons prefix">bookmark</i>
-        <input type="text" id="titleInput" name="title">
+        <input type="text" [(ngModel)]="item.title" id="titleInput" name="title">
         <label for="titleInput">Title</label>
         <span class="helper-text">For example, Blue hand bag</span>
       </div>
       <div class="input-field">
         <i class="material-icons prefix">assignment</i>
-        <textarea class="materialize-textarea" id="descriptionInput" name="description"></textarea>
+        <textarea class="materialize-textarea" [(ngModel)]="item.description" id="descriptionInput" name="description"></textarea>
         <label for="descriptionInput">Description</label>
         <span class="helper-text">Describe the item here, include specifics such as color, reference number, etc. Avoid sensitive informations</span>
       </div>
       <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix">date_range</i>
-        <input type="date" id="dateInput" name="date">
+        <input type="date"  [(ngModel)]="item.date" id="dateInput" name="date">
         <label for="dateInput">Date</label>
         <span class="helper-text">Lost or Found Date</span>
       </div>
       <div class="input-field transparent col s4 offset-s1">
-        <select name = "lostOrFound" class="browser-default light-green lighten-5">
+        <select name = "lostOrFound"  [(ngModel)]="item.lostOrFound" class="browser-default light-green lighten-5">
             <option value="" disabled selected>Lost or Found</option>
             <option value="Lost" class="red-text">Lost</option>
             <option value="Found" class="green-text">Found</option>
@@ -30,7 +30,7 @@
       </div>
       <div class="input-field">
         <i class="material-icons prefix">room</i>
-        <input type="text" id="placeInput" name="location">
+        <input type="text" id="placeInput" [(ngModel)]="item.location" name="location">
         <label for="placeInput">Place</label>
         <span class="helper-text">For example, "Near Statue of Liberty, NY"</span>
       </div>
@@ -38,15 +38,15 @@
     <div class="col s12 l6">
       <div class="row">
         <div class="col s3">
-          <img src="../../assets/images/noImage.jpg" alt="" class="responsive-img display-image z-depth-1">
+          <img src="{{imagePath}}" alt="" class="responsive-img display-image z-depth-1">
         </div>
         <div class="input-field col s5 valign-wrapper">
-          <input type="file" id="imageInput" name="image">
+          <input type="file" id="imageInput" (change)="setImage($event)" name="image">
         </div>
       </div>
       <div class="row">
         <div class="input-field transparent col s4">
-          <select name = "category" class="browser-default light-green lighten-5">
+          <select name = "category"  [(ngModel)]="item.category" class="browser-default light-green lighten-5">
               <option value="" disabled selected>Category</option>
               <option value="Keys" class="">Keys</option>
               <option value="Wallets" class="">Wallets</option>
@@ -55,22 +55,21 @@
               <option value="Others" class="">Others</option>
             </select>
         </div>
-        <div class="input-field col s6 offset-s1">
+        <div class="input-field col s6 offset-s1" (keydown)="keyDown($event)">
           <i class="material-icons prefix">loyalty</i>
-          <input type="text" id="tagsInput" name="tags">
+          <input type="text" [(ngModel)]="tag" id="tagsInput" name="tags">
           <label for="tagsInput">Tags</label>
           <span class="helper-text">Press Enter to add tag</span>        
         </div>
       </div>
       <div class="center">
-        <div class="chip">dummy<i class="close material-icons">close</i></div>
-        <div class="chip">fake<i class="close material-icons">close</i></div>
+        <div *ngFor="let tag of item.tags; index as i" class="chip">{{tag}}<i class="close-chip material-icons" (click)="removeTag(i)">close</i></div>
       </div>
       </div>
     </div>
     <div class="center">
-      <div class="btn">Cancel</div>
-      <div class="btn light-green darken-3">Save</div>
+      <div class="btn" (click)="cancel()">Cancel</div>
+      <div class="btn light-green darken-3" (click)="saveItem()">Save</div>
     </div>
   </div>
   

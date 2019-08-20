@@ -6,7 +6,7 @@
       <input type="email" [(ngModel)]="credentials.email" id="emailInput" name="email">
       <label for="emailInput">Email</label>
     </div>
-    <div class="input-field">
+    <div class="input-field" (keydown)="keyDown($event)">
       <i class="material-icons prefix">lock</i>
       <input type="password" [(ngModel)]="credentials.password" id="passwordInput" name="password">
       <label for="passwordInput">Password</label>
@@ -14,7 +14,7 @@
     <div class="input-field center">
       <button class="btn light-green darken-3 white-text" (click)="signIn()">Sign In</button>
     </div>
-    <div class="">New User? <a href="./signUp">Create Account</a></div>
+    <div class="">New User? <a routerLink="/signUp">Create Account</a></div>
   </div>
   </div>
 </div>

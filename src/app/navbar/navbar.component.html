@@ -1,21 +1,50 @@
+<div>
+<ul id="navDropDown" (mouseleave)="hideDropDown($event)" class="dropdown-content">
+    <li><a routerLink="/items">Lost</a></li>
+    <li><a routerLink="/items">Found</a></li>
+</ul>
+</div>
 <nav class="light-green darken-3">
   <div class="nav-wrapper container">
-    <a href="" class="sidenav-trigger" data-target="mobileMenu">
+    <a (click)="showMobileMenu()" class="sidenav-trigger">
       <i class="material-icons">menu</i>
     </a>
     <a href="#" class="brand-logo">CSEI</a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="./home" >Home</a></li>
-      <li><a href="" class="dropdown-trigger">Items
+      <li><a routerLink="/home" >Home</a></li>
+      <li id="itemTab" (mouseenter)="showDropDown()"><a routerLink="/items" class="dropdown-trigger">Items
           <i class="material-icons right">arrow_drop_down</i>
       </a></li>
-      <li><a href="./signIn" >Sign In</a></li>
-      <li><a href="./signUp" >Sign Up</a></li>      
+      <li *ngIf="userService.isLoggedIn()"><a routerLink="/dashboard" >Dashboard</a></li>
+      <li *ngIf="!userService.isLoggedIn()"><a routerLink="/signIn" >Sign In</a></li>
+      <li *ngIf="!userService.isLoggedIn()"><a routerLink="/signUp" >Sign Up</a></li>      
+      <li *ngIf="userService.isLoggedIn()"><a (click)="logOut()">Log Out</a></li>      
     </ul>
-    <ul class="sidenav grey lighten-2" id="mobileMenu">
-      <li><a href="#concerts" >Concerts</a></li>
-      <li><a href="#about" >About</a></li>
-      <li><a href="#contact" >Contact</a></li>
+    <ul class="sidenav light-green lighten-5" id="mobileMenu">
+      <li><a class="light-green-text text-darken-3" routerLink="/home" >Home</a></li>
+      <li><div class="divider"></div></li>
+      <li><a routerLink="/items" class="light-green-text text-darken-3">Items
+      </a></li>
+      <li><div class="divider"></div></li>
+      <div class="side-nav-padded">
+      <li><a class="red-text" routerLink="/items" >Lost</a></li>
+      <li><a class="green-text" routerLink="/items" >Found</a></li>      
+      </div>
+      <li><div class="divider"></div></li>
+      <li *ngIf="userService.isLoggedIn()">
+        <a class="light-green-text text-darken-3" routerLink="/dashboard" >Dashboard</a>
+      </li>
+      <li *ngIf="!userService.isLoggedIn()">
+        <a class="light-green-text text-darken-3" routerLink="/signIn" >Sign In</a>
+      </li>
+      <li><div class="divider"></div></li>
+      <li *ngIf="!userService.isLoggedIn()">
+        <a class="light-green-text text-darken-3" routerLink="/signUp" >Sign Up</a>
+      </li>      
+      <li *ngIf="userService.isLoggedIn()">
+        <a class="light-green-text text-darken-3" (click)="logOut()">Log Out</a>
+      </li>
+      <li><div class="divider"></div></li>
     </ul>
   </div>
 </nav>

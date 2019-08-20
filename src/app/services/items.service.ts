@@ -1,42 +1,39 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { User } from '../models/user.model';
-import 'rxjs/Rx';
-import { Observable } from 'rxjs';
-
+import { Observable, of } from 'rxjs';
+import { map, tap, catchError, mapTo } from 'rxjs/operators';
+import { API_URL } from './app.config';
+import { HttpParams, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemsService {
-  private serverurl: string = 'url'
 
   constructor(private http: Http) { }
 
-  getItems(location: string, category: string, lostOrFound: string){
-    let url:string = this.serverurl;
-    if(location||category||lostOrFound)
-      {
-        url += '?';
-      }
-    if(location) {
-      url += 'location=' + location + '&';
-    }
-    if(category) {
-        url += 'category=' + category + '&';
-    }
-    if(lostOrFound) {
-        url += 'lostorfound=' + lostOrFound;
-    }
-    return this.getItemsAjax(url);
+  getItems(searchParams) {
+    let url = API_URL + 'items';
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let params = new HttpParams()
+    .set("params", JSON.stringify(searchParams));
+    return this.http.get(url, { headers: headers, search: params});    
   }
 
-  getItemsAjax(url:string) {
+  getMyItems() {
+    let url = API_URL + 'myItems';
     return this.http.get(url);
   }
 
-
-  addItems(item: any[]) {
-    return this.http.post(this.serverurl, item);
+  addItem(item) {
+    let url = API_URL + 'item';
+    return this.http.post(url, item).pipe(
+      mapTo({saved: true}),
+      catchError((error) => {
+        return of({saved: false, error:error});
+      })
+    )
   }
 }

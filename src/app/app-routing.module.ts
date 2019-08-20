@@ -7,17 +7,18 @@ import { ItemsComponent } from './items/items.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { AuthGuard } from './guards/auth.guard';
+import { UserGuard } from './guards/user.guard';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},  
-  {path: 'signIn', component: SignInComponent},  
-  {path: 'signUp', component: SignUpComponent},  
+  {path: 'signIn', component: SignInComponent, canActivate: [AuthGuard]},  
+  {path: 'signUp', component: SignUpComponent, canActivate: [AuthGuard]},  
   {path: 'lostItems', component: ItemsComponent},  
   {path: 'foundItems', component: ItemsComponent},  
   {path: 'items', component: ItemsComponent},  
-  {path: 'addItem', component: AddItemComponent},  
-  {path: 'dashboard', component: DashboardComponent},  
+  {path: 'addItem', component: AddItemComponent, canActivate: [UserGuard]},  
+  {path: 'dashboard', component: DashboardComponent, canActivate: [UserGuard]},  
 ];
 
 @NgModule({

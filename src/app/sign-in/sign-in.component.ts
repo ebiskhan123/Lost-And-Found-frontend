@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,9 +11,25 @@ export class SignInComponent implements OnInit {
   private credentials = {email: '', password: ''};
   
   signIn = () => {
-    console.log(this.credentials);
+    this.userService.signIn(this.credentials)
+    .subscribe((signedIn) => {
+      if(signedIn) {
+        this.router.navigateByUrl('/dashboard');
+      }
+      else
+        {
+          console.log('check credentials');
+        }
+    })
   }
-  constructor(private userService: UserService) { }
+
+  keyDown = (event) => {
+    if (event.key === "Enter") {
+      this.signIn();
+    }
+  }
+
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }

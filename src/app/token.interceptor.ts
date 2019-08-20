@@ -10,7 +10,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     constructor(private userService:UserService, private router:Router) {}
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if(this.userService.getJwt()) {
+        if(this.userService.isLoggedIn()) {
             request = this.addToken(request, this.userService.getJwt());
         }
         return <any>next.handle(request).pipe(catchError(error => {
@@ -26,7 +26,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     private handle401Error(request: HttpRequest<any>, next: HttpHandler){
         this.userService.clearTokens();
-        this.router.navigate('/signIn');
+        this.router.navigateByUrl('/signIn');
         return throwError('Unauthorized Access');
     }
 

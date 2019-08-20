@@ -3,20 +3,21 @@ import { Http, Response } from '@angular/http';
 import { User } from '../models/user.model';
 import { Observable, of } from 'rxjs';
 import { map, tap, catchError, mapTo } from 'rxjs/operators';
+import { API_URL } from './app.config'
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private signupurl = '';
-  private loginurl = '';
-  private logouturl = '';
+  private signUpUrl = API_URL + 'signUp';
+  private signInUrl = API_URL + 'signIn';
+  private logOutUrl = API_URL + 'logOut';
   private JWT = 'JWT';
 
   constructor(private http: Http) { }
 
-  signUp(user: any[]) {
-    return this.http.post(this.signupurl, user).pipe(
+  signUp(user: any) {
+    return this.http.post(this.signUpUrl, user).pipe(
       mapTo({created:true}),
       catchError(
         (error) => {
@@ -28,8 +29,8 @@ export class UserService {
     
   }
 
-  signIn(user: any[]) {
-    return this.http.post(this.loginurl, user).pipe(
+  signIn(user: any) {
+    return this.http.post(this.signInUrl, user).pipe(
       tap(tokens => this.saveTokens(tokens)),
       mapTo(true),
       catchError(
@@ -42,14 +43,21 @@ export class UserService {
   }
 
   logOut() {
-    return this.http.post(this.logouturl, null).pipe(
+    return this.http.post(this.logOutUrl, null).pipe(
       tap(response => this.clearTokens()),
       mapTo(true),
       catchError((error) => {
+        this.clearTokens();
         console.log(error);
         return of(false);
       })
     );
+  }
+
+  isLoggedIn = () => {
+    if(this.getJwt())
+      return true;
+    return false;
   }
 
   public getJwt = () => {
