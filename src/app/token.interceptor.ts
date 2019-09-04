@@ -10,9 +10,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     constructor(private userService:UserService, private router:Router) {}
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if(this.userService.isLoggedIn()) {
-            request = this.addToken(request, this.userService.getJwt());
-        }
+        request = this.addToken(request, this.userService.getJwt());
         return <any>next.handle(request).pipe(catchError(error => {
                 if(error instanceof HttpErrorResponse && error.status === 401) {
                     return this.handle401Error(request, next);

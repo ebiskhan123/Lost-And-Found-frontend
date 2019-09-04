@@ -17,7 +17,11 @@ export class AddItemComponent implements OnInit {
 
   saveItem = () => {
     console.log({image: this.itemImage, item: this.item});
-    this.itemsService.addItem({image: this.itemImage, item: this.item})
+    let formData = new FormData();
+    formData.append('item', JSON.stringify(this.item));
+    formData.append('image', this.itemImage);
+    console.log(formData);
+    this.itemsService.addItem(formData)
     .subscribe((result: {saved: boolean, error: any}) => {
       if(result.saved) {
         this.router.navigateByUrl('/dashboard');

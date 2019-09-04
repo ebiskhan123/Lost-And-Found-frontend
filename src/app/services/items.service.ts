@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
 import { User } from '../models/user.model';
 import { Observable, of } from 'rxjs';
 import { map, tap, catchError, mapTo } from 'rxjs/operators';
 import { API_URL } from './app.config';
-import { HttpParams, HttpHeaders } from "@angular/common/http";
+import { HttpParams, HttpHeaders, HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemsService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getItems(searchParams) {
     let url = API_URL + 'items';
-    let headers = new Headers();
+    let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     let params = new HttpParams()
-    .set("params", JSON.stringify(searchParams));
-    return this.http.get(url, { headers: headers, search: params});    
+    .set("params", searchParams);
+    return this.http.get(url, { headers: headers, params:params});    
   }
 
   getMyItems() {
@@ -29,7 +28,8 @@ export class ItemsService {
 
   addItem(item) {
     let url = API_URL + 'item';
-    return this.http.post(url, item).pipe(
+    let headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+    return this.http.post(url, item, { headers: headers }).pipe(
       mapTo({saved: true}),
       catchError((error) => {
         return of({saved: false, error:error});

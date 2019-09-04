@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { Observable, of } from 'rxjs';
 import { map, tap, catchError, mapTo } from 'rxjs/operators';
@@ -14,7 +14,7 @@ export class UserService {
   private logOutUrl = API_URL + 'logOut';
   private JWT = 'JWT';
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   signUp(user: any) {
     return this.http.post(this.signUpUrl, user).pipe(
@@ -30,8 +30,8 @@ export class UserService {
   }
 
   signIn(user: any) {
-    return this.http.post(this.signInUrl, user).pipe(
-      tap(tokens => this.saveTokens(tokens)),
+    return this.http.post(this.signInUrl, user, {responseType: 'json'}).pipe(
+      tap(response => this.saveTokens(response)),
       mapTo(true),
       catchError(
         (error) => {
