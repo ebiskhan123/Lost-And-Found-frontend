@@ -1,6 +1,6 @@
 <div class="row">
   <div class="image-holder">
-    <img src="{{item.imageUrl}}" alt="" class="responsive-img materialboxed">
+    <img src="{{'./image/' + item.imageUrl}}" alt="" class="responsive-img materialboxed">
   </div>
   <div class="col s12 l6 offset-l1 valign-wrapper">
   <div>
@@ -11,10 +11,18 @@
       {{item.category}}
     </a>
     <div *ngFor="let tag of item.tags" class="chip right">{{tag}}</div>
-    <h5><span class="green-text" *ngIf="item.lostOrFound=='Found'">Found</span>
-    <span class="red-text" *ngIf="item.lostOrFound=='Lost'">Lost </span>
-    <span class="grey-text">&nbsp;&nbsp;{{item.date}}</span></h5>
-    <h6>{{item.location}}</h6>
+    <div class="custom-grid"> 
+    <div class="custom-col">
+      <h5><span class="green-text" *ngIf="item.lostOrFound=='Found'">Found</span>
+      <span class="red-text" *ngIf="item.lostOrFound=='Lost'">Lost </span>
+      <span class="grey-text">&nbsp;&nbsp;{{item.date}}</span></h5>
+      <h6>{{item.location}}</h6>
+    </div>
+    <div *ngIf="!isRequestDisabled" class="custom-col">
+      <button *ngIf="item.lostOrFound=='Lost'" (click)="claimButtonClick(item)" class="btn white-text light-green darken-3 claim-btn">Found It</button>
+      <button *ngIf="item.lostOrFound=='Found'" (click)="claimButtonClick(item)" class="btn white-text light-green darken-3 claim-btn">Claim</button>
+    </div>
+    </div>
   </div>
   </div>
 </div>

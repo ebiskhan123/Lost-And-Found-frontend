@@ -1,3 +1,21 @@
 <div class="section container">
-  <app-item *ngFor="let item of items, index as i" [item]="item"></app-item>
+  <app-item *ngFor="let item of items, index as i" [item]="item" [claimButtonClick]="setItemRequestForm"></app-item>
+  <div id="itemClaimModal" class="modal modal-container">
+    <div class="container">
+      <div class="modal-content">
+        <h4 class="">Claim Item</h4>
+        <app-item [item]="itemOnFocus" isRequestDisabled="true"></app-item>        
+        <div class="input-field">
+          <i class="material-icons prefix">assignment</i>
+          <textarea [(ngModel)]="itemRequestMessage" class="materialize-textarea" id="messageInput" name="message"></textarea>
+          <label for="messageInput">Message</label>
+          <span class="helper-text">Leave a message for the person who user who posted the item so that they could contact you back</span>
+        </div>
+        <div>
+          <button class="btn right light-green darken-3 white-text" (click)="sendItemRequest()">Send</button>
+          <button class="btn right" (click)="hideItemRequestModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

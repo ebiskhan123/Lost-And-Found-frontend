@@ -14,3 +14,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.custom-grid
+{
+    width:100%;
+    display: grid;
+    grid-template-columns: 35vw auto;
+}
+
+.custom-col
+{
+    display: inline-grid;
+}
+
+.claim-btn{
+    margin-top: 1vw;
+}

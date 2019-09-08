@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
   private repositionDropDown = () => {
     let dropDrown = document.getElementById('navDropDown');
     let itemTab = document.getElementById('itemTab');
-    dropDrown.style.left = itemTab.getBoundingClientRect().left + 'px';
+    dropDrown.style.left = (2 * itemTab.getBoundingClientRect().left - itemTab.getBoundingClientRect().right) + 'px';
     dropDrown.style.top = itemTab.getBoundingClientRect().bottom + 'px';
   }
 

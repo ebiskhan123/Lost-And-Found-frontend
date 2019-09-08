@@ -26,6 +26,36 @@ export class ItemsService {
     return this.http.get(url);
   }
 
+  resolveItem(itemId) {
+    let url = `${API_URL}resolveItem/${itemId}`;    
+    return this.http.patch(url, {}).pipe(
+      mapTo({resolved: true, error: null}),
+      catchError((error) => {
+        return of({resolved: false, error:error});
+      })
+    )
+  }
+
+  sendItemClaimRequest(message, itemId) {
+    let url = `${API_URL}claimItem/${itemId}`;
+    return this.sendItemRequest(url, message);
+  }
+
+  
+  sendItemFoundRequest(message, itemId) {
+    let url = `${API_URL}foundItem/${itemId}`;
+    return this.sendItemRequest(url, message);
+  }
+
+  sendItemRequest(url, message) {
+    return this.http.post(url, {message: message}).pipe(
+      mapTo({saved: true}),
+      catchError((error) => {
+        return of({saved: false, error:error});
+      })
+    )
+  } 
+
   addItem(item) {
     let url = API_URL + 'item';
     let headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });

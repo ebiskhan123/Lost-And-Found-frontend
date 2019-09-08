@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
 const mockItems: Item[] = [
   <Item> {
-    id:'agagag', location:'Near Statue of Liberty', 
+    _id:'agagag', location:'Near Statue of Liberty', 
     title:'Yamaha Bike Key', date:'August 10, 2019', 
     imageUrl:'../../assets/images/keys.jpg', 
     lostOrFound:'Found', category:'Keys', 
@@ -33,7 +33,7 @@ const mockItems: Item[] = [
     tags:["bike key", "yamaha", "no keychain"]
   },
   <Item> {
-    id:'agagaaf', location:'Gandhi Park', 
+    _id:'agagaaf', location:'Gandhi Park', 
     title:'Ladies Handbag', date:'August 22, 2019', 
     imageUrl:'../../assets/images/handBag.jpg', 
     lostOrFound:'Lost', category:'Bags', 
@@ -41,7 +41,7 @@ const mockItems: Item[] = [
     tags:["Aswin", "Ebby", "Rss"]
   },
   <Item> {
-    id:'agagag', location:'Mars Foundations', 
+    _id:'agagag', location:'Mars Foundations', 
     title:'Ebby', date:'August 10, 2019', 
     imageUrl:'../../assets/images/Ebby.jpg', 
     lostOrFound:'Lost', category:'Person', 
@@ -49,7 +49,7 @@ const mockItems: Item[] = [
     tags:["Kovai guy", "kidnapping", "childabuse"]
   },
   <Item> {
-    id:'agagag', location:'Near Statue of Liberty', 
+    _id:'agagag', location:'Near Statue of Liberty', 
     title:'Yamaha Bike Key', date:'August 10, 2019', 
     imageUrl:'../../assets/images/keys.jpg', 
     lostOrFound:'Found', category:'Keys', 

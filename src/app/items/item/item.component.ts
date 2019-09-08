@@ -7,6 +7,8 @@ import {Item} from '../../models/item.model';
 })
 export class ItemComponent implements OnInit {
   @Input('item') item: Item;
+  @Input('claimButtonClick') claimButtonClick;
+  @Input('isRequestDisabled') isRequestDisabled: boolean;
   constructor() {
   }
 

@@ -9,11 +9,28 @@ import { ItemsService } from "../services/items.service";
 })
 export class ItemsComponent implements OnInit {
   items: any;
+  itemOnFocus: Item;
   filters: any;
+  itemRequestAction: any;
+  itemRequestMessage: string;
 
   constructor(private itemsService: ItemsService) {
     this.items = mockItems;
+    this.itemOnFocus = mockItems[0];
    }
+
+  setItemRequestForm = (item) => {
+    this.itemOnFocus = item;
+    if(this.itemOnFocus.lostOrFound == 'Lost')
+      {
+        this.itemRequestAction = this.sendFoundRequest;
+      }
+    else
+      {
+        this.itemRequestAction = this.sendClaimRequest;
+      }
+    this.showItemRequestModal();    
+  }
 
   ngOnInit() {
     this.itemsService.getItems(this.filters)
@@ -22,11 +39,36 @@ export class ItemsComponent implements OnInit {
     })
   }
 
+  sendItemRequest() {
+    this.itemRequestAction()
+    .subscribe((result) => {
+      if(result.error) {
+        console.log(result.error);
+      }
+    })
+  }
+
+  sendClaimRequest = () => {
+    return this.itemsService.sendItemClaimRequest(this.itemRequestMessage, this.itemOnFocus._id);
+  }
+
+  sendFoundRequest = () => {
+    return this.itemsService.sendItemFoundRequest(this.itemRequestMessage, this.itemOnFocus._id);    
+  }
+
+  showItemRequestModal = () => {
+    document.getElementById('itemClaimModal').style.display = 'block';
+  }
+
+  hideItemRequestModal = () => {
+    document.getElementById('itemClaimModal').style.display = 'none';    
+  }
+
 }
 
 const mockItems: Item[] = [
   <Item> {
-    id:'agagag', location:'Near Statue of Liberty', 
+    _id:'agagag', location:'Near Statue of Liberty', 
     title:'Yamaha Bike Key', date:'August 10, 2019', 
     imageUrl:'../../assets/images/keys.jpg', 
     lostOrFound:'Found', category:'Keys', 
@@ -34,7 +76,7 @@ const mockItems: Item[] = [
     tags:["bike key", "yamaha", "no keychain"]
   },
   <Item> {
-    id:'agagaaf', location:'Gandhi Park', 
+    _id:'agagaaf', location:'Gandhi Park', 
     title:'Ladies Handbag', date:'August 22, 2019', 
     imageUrl:'../../assets/images/handBag.jpg', 
     lostOrFound:'Lost', category:'Bags', 
@@ -42,7 +84,7 @@ const mockItems: Item[] = [
     tags:["Aswin", "Ebby", "Rss"]
   },
   <Item> {
-    id:'agagag', location:'Mars Foundations', 
+    _id:'agagag', location:'Mars Foundations', 
     title:'Ebby', date:'August 10, 2019', 
     imageUrl:'../../assets/images/Ebby.jpg', 
     lostOrFound:'Lost', category:'Person', 
@@ -50,7 +92,7 @@ const mockItems: Item[] = [
     tags:["Kovai guy", "kidnapping", "childabuse"]
   },
   <Item> {
-    id:'agagag', location:'Near Statue of Liberty', 
+    _id:'agagag', location:'Near Statue of Liberty', 
     title:'Yamaha Bike Key', date:'August 10, 2019', 
     imageUrl:'../../assets/images/keys.jpg', 
     lostOrFound:'Found', category:'Keys', 

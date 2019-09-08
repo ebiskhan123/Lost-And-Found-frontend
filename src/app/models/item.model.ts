@@ -1,7 +1,7 @@
 import { User } from './user.model';
 
 export class Item {
-    id: string;
+    _id: string;
     title: string;
     location: string;
     date: any;
@@ -9,7 +9,7 @@ export class Item {
     lostOrFound: string;
     category: string;
     description: string;
-    postedBy: User;
+    postedBy: string;
     tags: string[];
 }
 
