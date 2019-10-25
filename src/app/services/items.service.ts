@@ -8,9 +8,14 @@ import { HttpParams, HttpHeaders, HttpClient } from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class ItemsService {
+export class ItemsService {  
 
   constructor(private http: HttpClient) { }
+  
+  getItem(itemId: string) {
+    let url = `${API_URL}item/${itemId}`;
+    return this.http.get(url);
+  }
 
   getItems(searchParams) {
     let url = API_URL + 'items';

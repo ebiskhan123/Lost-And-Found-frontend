@@ -4,13 +4,24 @@ export class Item {
     _id: string;
     title: string;
     location: string;
-    date: any;
+    date: Date;
     imageUrl: string;
-    lostOrFound: string;
+    lostOrFound: LostOrFound;
     category: string;
     description: string;
     postedBy: string;
     tags: string[];
+}
+
+export class City {
+    _id: string;
+    name: string;
+    areas: [Area];
+}
+
+class Area {
+    _id: string;
+    name: string;
 }
 
 enum LostOrFound {

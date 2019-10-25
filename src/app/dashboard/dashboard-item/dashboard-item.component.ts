@@ -8,10 +8,13 @@ import { ItemsService } from "src/app/services/items.service";
   styleUrls: ['./dashboard-item.component.css']
 })
 export class DashboardItemComponent implements OnInit {
+  months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  
   @Input('item') item: Item;  
   constructor(private itemServices:ItemsService) { }
 
   ngOnInit() {
+    this.item.date = new Date(this.item.date);    
   }
 
   resolveItem() {

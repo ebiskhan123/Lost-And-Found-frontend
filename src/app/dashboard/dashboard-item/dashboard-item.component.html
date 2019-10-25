@@ -15,7 +15,7 @@
       <div class="custom-col">
         <h5><span class="green-text" *ngIf="item.lostOrFound=='Found'">Found</span>
         <span class="red-text" *ngIf="item.lostOrFound=='Lost'">Lost </span>
-        <span class="grey-text">&nbsp;&nbsp;{{item.date}}</span></h5>
+        <span class="grey-text">&nbsp;&nbsp;{{months[item.date.getMonth()]}} {{item.date.getDate()}}, {{item.date.getFullYear()}}</span></h5>
         <h6>{{item.location}}</h6>
       </div>
       <div class="custom-col">

@@ -14,9 +14,9 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},  
   {path: 'signIn', component: SignInComponent, canActivate: [AuthGuard]},  
   {path: 'signUp', component: SignUpComponent, canActivate: [AuthGuard]},  
-  {path: 'lostItems', component: ItemsComponent},  
-  {path: 'foundItems', component: ItemsComponent},  
   {path: 'items', component: ItemsComponent},  
+  {path: 'items/:lostOrFound', component: ItemsComponent},  
+  {path: 'item/:itemId', component: ItemsComponent, canActivate: [UserGuard]},  
   {path: 'addItem', component: AddItemComponent, canActivate: [UserGuard]},  
   {path: 'dashboard', component: DashboardComponent, canActivate: [UserGuard]},  
 ];

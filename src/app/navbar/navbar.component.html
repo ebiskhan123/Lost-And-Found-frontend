@@ -3,7 +3,7 @@
     <a (click)="showMobileMenu()" class="sidenav-trigger">
       <i class="material-icons">menu</i>
     </a>
-    <a href="#" class="brand-logo">CSEI</a>
+    <a href="#" class="brand-logo">CSIE</a>
     <ul class="right hide-on-med-and-down">
       <li><a routerLink="/home" >Home</a></li>
       <li id="itemTab" (mouseenter)="showDropDown()" (mouseleave)="hideDropDown($event)">
@@ -11,8 +11,8 @@
           <i class="material-icons right">arrow_drop_down</i>
         </a>
           <ul id="navDropDown" (mouseleave)="hideDropDown($event)" class="dropdown-content">
-              <li><a routerLink="/items">Lost</a></li>
-              <li><a routerLink="/items">Found</a></li>
+              <li><a routerLink="/items/lost">Lost</a></li>
+              <li><a routerLink="/items/found">Found</a></li>
           </ul>
       </li>
       <li *ngIf="userService.isLoggedIn()"><a routerLink="/dashboard" >Dashboard</a></li>
@@ -20,7 +20,7 @@
       <li *ngIf="!userService.isLoggedIn()"><a routerLink="/signUp" >Sign Up</a></li>      
       <li *ngIf="userService.isLoggedIn()"><a (click)="logOut()">Log Out</a></li>      
     </ul>
-    <ul class="sidenav light-green lighten-5" id="mobileMenu">
+    <ul class="sidenav" id="mobileMenu">
       <li><a class="light-green-text text-darken-3" routerLink="/home" >Home</a></li>
       <li><div class="divider"></div></li>
       <li><a routerLink="/items" class="light-green-text text-darken-3">Items

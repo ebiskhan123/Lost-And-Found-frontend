@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-sign-up',
@@ -8,7 +9,8 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  
+  forwardTo: any;
+
   private user = {
     name: '',
     email: '',    
@@ -22,6 +24,8 @@ export class SignUpComponent implements OnInit {
     this.userService.signUp(this.user)
     .subscribe((result: { created:any, error:any }) => {
       if(result.created) {
+        if(this.forwardTo)
+          this.router.navigateByUrl(`/${this.forwardTo}`);        
         this.router.navigateByUrl('/signIn');
       }
       else {
@@ -46,9 +50,13 @@ export class SignUpComponent implements OnInit {
     this.password = '';
   }
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      if(params.forwardTo)
+        this.forwardTo = params.forwardTo;
+    })
   }
 
 }

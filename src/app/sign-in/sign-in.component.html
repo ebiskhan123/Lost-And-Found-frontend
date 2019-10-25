@@ -14,7 +14,7 @@
     <div class="input-field center">
       <button class="btn light-green darken-3 white-text" (click)="signIn()">Sign In</button>
     </div>
-    <div class="">New User? <a routerLink="/signUp">Create Account</a></div>
+    <div class="">New User? <a routerLink="/signUp" [queryParams]="{forwardTo: '' + forwardTo}">Create Account</a></div>
   </div>
   </div>
 </div>

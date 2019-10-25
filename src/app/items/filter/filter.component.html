@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="input-field transparent col s3">
+      <select name = "lostOrFound"  [(ngModel)]="item.lostOrFound" class="browser-default light-green lighten-5">
+          <option value="" disabled selected>Lost or Found</option>
+          <option value="Lost" class="red-text">Lost</option>
+          <option value="Found" class="green-text">Found</option>
+        </select>
+    </div>
+    <div class="input-field col s3 offset-s1">
+      <i class="material-icons prefix">date_range</i>
+      <input type="date"  [(ngModel)]="item.date" id="dateInput" name="date">
+      <label for="dateInput">Date</label>
+    </div>
+    <div class="input-field transparent col s3 offset-s1">
+      <select name = "category"  [(ngModel)]="item.category" class="browser-default light-green lighten-5">
+          <option value="" disabled selected>Category</option>
+          <option value="Keys" class="">Keys</option>
+          <option value="Wallets" class="">Wallets</option>
+          <option value="Documents" class="">Documents</option>
+          <option value="Bags" class="">Bags</option>
+          <option value="Others" class="">Others</option>
+        </select>
+    </div>
+    
+  </div>
+</div>
