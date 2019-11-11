@@ -14,9 +14,11 @@ export class UserGuard implements CanActivate {
       return true;
     }
     let forwardTo = '';
-    route.url.forEach(element => {
-      forwardTo += `${element.path}/`;
-    });
+    for(let i = 0; i < route.url.length; i++) {
+      if(i > 0)
+        forwardTo += '/'
+      forwardTo += `${route.url[i].path}`;      
+    }
     this.router.navigateByUrl(`/signIn?forwardTo=${forwardTo}`);
     return false;
   }

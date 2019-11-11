@@ -1,4 +1,5 @@
-<nav class="light-green darken-3">
+<div id="navOffset"></div>
+<nav class="light-green darken-3 nav-z" id="navBar">
   <div class="nav-wrapper container">
     <a (click)="showMobileMenu()" class="sidenav-trigger">
       <i class="material-icons">menu</i>
@@ -11,10 +12,11 @@
           <i class="material-icons right">arrow_drop_down</i>
         </a>
           <ul id="navDropDown" (mouseleave)="hideDropDown($event)" class="dropdown-content">
-              <li><a routerLink="/items/lost">Lost</a></li>
-              <li><a routerLink="/items/found">Found</a></li>
+              <li><a routerLink="/items/Lost">Lost</a></li>
+              <li><a routerLink="/items/Found">Found</a></li>
           </ul>
       </li>
+      <li><a routerLink="/aboutUs">About Us</a></li>      
       <li *ngIf="userService.isLoggedIn()"><a routerLink="/dashboard" >Dashboard</a></li>
       <li *ngIf="!userService.isLoggedIn()"><a routerLink="/signIn" >Sign In</a></li>
       <li *ngIf="!userService.isLoggedIn()"><a routerLink="/signUp" >Sign Up</a></li>      
@@ -27,9 +29,11 @@
       </a></li>
       <li><div class="divider"></div></li>
       <div class="side-nav-padded">
-      <li><a class="red-text" routerLink="/items" >Lost</a></li>
-      <li><a class="green-text" routerLink="/items" >Found</a></li>      
+      <li><a class="red-text" routerLink="/items/Lost" >Lost</a></li>
+      <li><a class="green-text" routerLink="/items/Found" >Found</a></li>      
       </div>
+      <li><div class="divider"></div></li>
+      <li><a class="light-green-text text-darken-3" routerLink="/aboutUs" >About Us</a></li>
       <li><div class="divider"></div></li>
       <li *ngIf="userService.isLoggedIn()">
         <a class="light-green-text text-darken-3" routerLink="/dashboard" >Dashboard</a>

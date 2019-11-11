@@ -12,7 +12,7 @@ import { UserGuard } from "src/app/guards/user.guard";
 export class ItemsComponent implements OnInit {
   items: any;
   itemOnFocus: Item;
-  filters: any = {};
+  filters  = {lostOrFound:'', category:'', location:''};
   itemRequestAction: any;
   itemRequestMessage: string;
 
@@ -34,6 +34,10 @@ export class ItemsComponent implements OnInit {
     this.showItemRequestModal();    
   }
 
+  applyFilters = () => {
+    this.setItems()
+  }
+
   setItems() {
     this.itemsService.getItems(this.filters)
     .subscribe((items) => {
@@ -42,17 +46,11 @@ export class ItemsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.items = mockItems
     this.routes.params.subscribe(params => {
-      this.items = mockItems;
+      if(params['lostOrFound'])
       this.filters.lostOrFound = params['lostOrFound'];
       this.setItems();
-      if(params.itemId)
-        {
-          this.itemsService.getItem(params.itemId)
-          .subscribe((item) => {
-            this.setItemRequestForm(item);
-          })
-        }
     })
   }
 
@@ -86,7 +84,7 @@ export class ItemsComponent implements OnInit {
 
 const mockItems: Item[] = [
   <Item> {
-    _id:'agagag', location:'Near Statue of Liberty', 
+    _id:'agagag', location:{name:'Velechery', city:{name:'Chennai'}}, 
     title:'Yamaha Bike Key', date:new Date(), 
     imageUrl:'../../assets/images/keys.jpg', 
     lostOrFound:'Found', category:'Keys', 
@@ -94,7 +92,7 @@ const mockItems: Item[] = [
     tags:["bike key", "yamaha", "no keychain"]
   },
   <Item> {
-    _id:'agagaaf', location:'Gandhi Park', 
+    _id:'agagaaf', location:{name:'Polikarai', city:{name:'Chennai'}}, 
     title:'Ladies Handbag', date:new Date(), 
     imageUrl:'../../assets/images/handBag.jpg', 
     lostOrFound:'Lost', category:'Bags', 
@@ -102,7 +100,7 @@ const mockItems: Item[] = [
     tags:["Aswin", "Ebby", "Rss"]
   },
   <Item> {
-    _id:'agagag', location:'Mars Foundations', 
+    _id:'agagag', location:{name:'Vetturnimadam', city:{name:'Chennai'}}, 
     title:'Ebby', date:new Date(), 
     imageUrl:'../../assets/images/Ebby.jpg', 
     lostOrFound:'Lost', category:'Person', 
@@ -110,7 +108,7 @@ const mockItems: Item[] = [
     tags:["Kovai guy", "kidnapping", "childabuse"]
   },
   <Item> {
-    _id:'agagag', location:'Near Statue of Liberty', 
+    _id:'agagag', location:{name:'Kottar', city:{name:'Chennai'}}, 
     title:'Yamaha Bike Key', date:new Date(), 
     imageUrl:'../../assets/images/keys.jpg', 
     lostOrFound:'Found', category:'Keys', 

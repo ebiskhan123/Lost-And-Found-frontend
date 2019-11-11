@@ -3,7 +3,7 @@ import { User } from './user.model';
 export class Item {
     _id: string;
     title: string;
-    location: string;
+    location: Area;
     date: Date;
     imageUrl: string;
     lostOrFound: LostOrFound;
@@ -16,12 +16,12 @@ export class Item {
 export class City {
     _id: string;
     name: string;
-    areas: [Area];
 }
 
-class Area {
+export class Area {
     _id: string;
     name: string;
+    city: City;
 }
 
 enum LostOrFound {

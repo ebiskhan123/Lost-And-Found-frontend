@@ -16,6 +16,26 @@
     opacity: .5;
 }
 
+.custom-grid
+{
+    width:100%;
+    display: grid;
+    grid-template-columns: 35vw auto;
+}
+
+.custom-col
+{
+    display: inline-grid;
+}
+
+
 .close-chip:not(:disabled):not(.disabled):hover {
     opacity: .75;
+}
+
+@media only screen and (max-width: 600px) {
+    .custom-grid
+    {
+        grid-template-columns: auto;
+    }
 }

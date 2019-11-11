@@ -6,7 +6,7 @@
   <div>
     <h3 class="light-green-text text-darken-3">{{item.title}}</h3>
     <div class="truncated">{{item.description}}</div>
-    <a href="" class="btn light-green lighten-5 z-depth-0">
+    <a href="" class="btn light-green lighten-5 z-depth-0 category-tag">
       <i class="material-icons left">class</i>
       {{item.category}}
     </a>
@@ -16,7 +16,7 @@
         <h5><span class="green-text" *ngIf="item.lostOrFound=='Found'">Found</span>
         <span class="red-text" *ngIf="item.lostOrFound=='Lost'">Lost </span>
         <span class="grey-text">&nbsp;&nbsp;{{months[item.date.getMonth()]}} {{item.date.getDate()}}, {{item.date.getFullYear()}}</span></h5>
-        <h6>{{item.location}}</h6>
+        <h6>{{item.location.name}}, {{item.location.city.name}}</h6>
       </div>
       <div class="custom-col">
         <button (click)="resolveItem()" class="btn white-text light-green darken-3 resolve-btn">Resolve</button>

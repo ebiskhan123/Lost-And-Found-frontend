@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from "../models/item.model";
+import { Item, City, Area } from "../models/item.model";
 import { ItemsService } from "../services/items.service";
 import { Router } from "@angular/router";
+import { AppService } from "src/app/services/app.service";
 
 @Component({
   selector: 'app-add-item',
@@ -10,23 +11,27 @@ import { Router } from "@angular/router";
 })
 export class AddItemComponent implements OnInit {
   
-  private item: Item = <Item> {lostOrFound: "", category: "", tags: []};
+  private item: Item = <Item> {lostOrFound: "Lost", category: "", tags: [], location:{_id:''}};
   private itemImage: any;
   private tag:string = '';
   private imagePath = '../../assets/images/noImage.jpg';
+  private cityId = '';
+  private areaId = '';
+  private cities: any = []
+  private areas: any = []
+  private categories: any = []
 
   saveItem = () => {
-    console.log({image: this.itemImage, item: this.item});
-    let formData = new FormData();
+    let formData = new FormData()
     formData.append('item', JSON.stringify(this.item));
     formData.append('image', this.itemImage);
-    console.log(formData);
     this.itemsService.addItem(formData)
     .subscribe((result: {saved: boolean, error: any}) => {
       if(result.saved) {
         this.router.navigateByUrl('/dashboard');
       }
       else {
+        this.app.makeToast(result.error.message)
         console.log(result.error);
       }
     })
@@ -69,9 +74,22 @@ export class AddItemComponent implements OnInit {
     }
   }
 
-  constructor(private itemsService: ItemsService, private router: Router) { }
+  resetAreas = () => {
+    this.areas = []
+    this.itemsService.getAreas(this.cityId)
+    .subscribe(areas => {
+      this.areas = areas;
+    })
+  }
+
+  constructor(private app: AppService, private itemsService: ItemsService, private router: Router) { }
 
   ngOnInit() {
+    this.itemsService.getCities()
+    .subscribe(cities => this.cities = cities)
+
+    this.itemsService.getCategories()
+    .subscribe(categories => this.categories = categories)
   }
 
 }

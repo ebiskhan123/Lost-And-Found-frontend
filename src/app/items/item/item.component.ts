@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Item} from '../../models/item.model';
+import { ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -9,10 +11,13 @@ export class ItemComponent implements OnInit {
   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   @Input('item') item: Item;
-  @Input('claimButtonClick') claimButtonClick;
   @Input('isRequestDisabled') isRequestDisabled: boolean;
+
+  claimButtonClick = () => {
+    this.router.navigateByUrl(`item/${this.item._id}`)
+  }
   
-  constructor() {
+  constructor(private router:Router) {
   }
 
   ngOnInit() {

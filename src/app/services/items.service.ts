@@ -22,7 +22,7 @@ export class ItemsService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     let params = new HttpParams()
-    .set("params", searchParams);
+    .set("params", JSON.stringify(searchParams));
     return this.http.get(url, { headers: headers, params:params});    
   }
 
@@ -39,6 +39,21 @@ export class ItemsService {
         return of({resolved: false, error:error});
       })
     )
+  }
+
+  getCities() {
+    let url = `${API_URL}cities`;
+    return this.http.get(url);
+  }
+
+  getCategories() {
+    let url = `${API_URL}item/categories`;
+    return this.http.get(url);
+  }
+
+  getAreas(cityId) {
+    let url = `${API_URL}areas/${cityId}`;
+    return this.http.get(url);
   }
 
   sendItemClaimRequest(message, itemId) {

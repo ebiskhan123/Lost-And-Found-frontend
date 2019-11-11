@@ -1,27 +1,47 @@
-<div class="container">
-  <div class="row">
-    <div class="input-field transparent col s3">
-      <select name = "lostOrFound"  [(ngModel)]="item.lostOrFound" class="browser-default light-green lighten-5">
-          <option value="" disabled selected>Lost or Found</option>
-          <option value="Lost" class="red-text">Lost</option>
-          <option value="Found" class="green-text">Found</option>
-        </select>
-    </div>
-    <div class="input-field col s3 offset-s1">
-      <i class="material-icons prefix">date_range</i>
-      <input type="date"  [(ngModel)]="item.date" id="dateInput" name="date">
-      <label for="dateInput">Date</label>
-    </div>
-    <div class="input-field transparent col s3 offset-s1">
-      <select name = "category"  [(ngModel)]="item.category" class="browser-default light-green lighten-5">
-          <option value="" disabled selected>Category</option>
-          <option value="Keys" class="">Keys</option>
-          <option value="Wallets" class="">Wallets</option>
-          <option value="Documents" class="">Documents</option>
-          <option value="Bags" class="">Bags</option>
-          <option value="Others" class="">Others</option>
-        </select>
-    </div>
-    
+<div class="filter-div">
+  <div class="center container" id="openFilter">
+      <a class="btn-floating waves-effect waves-light light-green darken-3 right" (click)="openFilter()"><i class="material-icons">youtube_searched_for</i></a>
   </div>
+  <div class="hide" id="filter">
+  <div class="container white">
+    <h6 class ="center">Filters</h6>
+    <div class="row">
+      <div class="input-field transparent col l3">
+        <select name = "lostOrFound"  [(ngModel)]="filters.lostOrFound" class="browser-default light-green lighten-5">
+            <option value="" class="grey-text">Lost or Found</option>
+            <option value="Lost" class="red-text">Lost</option>
+            <option value="Found" class="green-text">Found</option>
+          </select>
+      </div>
+      <div class="input-field transparent col l3">
+        <select name = "category"  [(ngModel)]="filters.category" class="browser-default light-green lighten-5">
+            <option value="" selected>Category</option>
+            <option *ngFor="let category of categories" value="{{category}}" class="">{{category}}</option>
+          </select>
+      </div>
+      <div class="input-field transparent col l4">
+        <select name = "city" (change)="resetAreas()" [(ngModel)]="cityId" class="browser-default light-green lighten-5">
+          <option value="" disabled selected>City</option>
+          <option *ngFor="let city of cities" value="{{city._id}}" class="">{{city.name}}</option>
+        </select>
+      </div>
+      <div class="input-field transparent col l4">
+        <select name = "location"  [(ngModel)]="filters.location" class="browser-default light-green lighten-5">
+          <option value="" class="grey-text">Area</option>
+          <option *ngFor="let area of areas" value="{{area._id}}" class="">{{area.name}}</option>
+        </select>
+      </div>
+      <div class="input-field col l3">
+        <i class="material-icons prefix">date_range</i>
+        <input type="date"  [(ngModel)]="filters.date" id="dateInput" name="date">
+        <label for="dateInput">Date</label>
+      </div>
+    </div>
+    <div class="center">
+      <div class="btn white" (click)="closeFilter()">Close</div>
+      <div class="btn light-green darken-3 white-text" (click)="applyFilter()">Apply</div>
+    </div>
+  </div>
+  <div class="divider light-green darken-3 hide-on-med-and-down"></div>
+</div>
 </div>

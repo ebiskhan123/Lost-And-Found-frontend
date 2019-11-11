@@ -49,9 +49,26 @@ export class NavbarComponent implements OnInit {
     dropDrown.style.top = itemTab.getBoundingClientRect().bottom + 'px';
   }
 
+  private stickNavbar = (event) => {
+    let navbar = document.getElementById('navBar')
+    let navOffset = document.getElementById('navOffset')
+    if (window.pageYOffset >= navbar.offsetTop) {
+      navbar.classList.add("sticky")
+      navOffset.classList.add("nav-offset")
+    } else {
+      navOffset.classList.remove("nav-offset")
+      navbar.classList.remove("sticky")
+    }
+  }
+
   constructor(private userService: UserService, private router:Router) { }
 
   ngOnInit() {
+    window.addEventListener('scroll', this.stickNavbar, true)
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('scroll', this.stickNavbar, true);
   }
 
 }

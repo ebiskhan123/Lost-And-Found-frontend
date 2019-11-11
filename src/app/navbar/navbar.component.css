@@ -7,3 +7,20 @@
 {
     padding-top: 50px;
 }
+
+.nav-z
+{
+    z-index: 9        
+}
+
+.sticky 
+{
+    position: fixed;
+    top: 0;
+}
+
+.nav-offset
+{
+    width: 100%;
+    height: 64px;
+}

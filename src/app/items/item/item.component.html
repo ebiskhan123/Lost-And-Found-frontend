@@ -1,3 +1,4 @@
+<div class="container">
 <div class="row">
   <div class="image-holder">
     <img src="{{'./image/' + item.imageUrl}}" alt="" class="responsive-img materialboxed">
@@ -16,9 +17,9 @@
       <h5><span class="green-text" *ngIf="item.lostOrFound=='Found'">Found</span>
       <span class="red-text" *ngIf="item.lostOrFound=='Lost'">Lost </span>
       <span class="grey-text">&nbsp;&nbsp;{{months[item.date.getMonth()]}} {{item.date.getDate()}}, {{item.date.getFullYear()}}</span></h5>
-      <h6>{{item.location}}</h6>
+      <h6>{{item.location.name}}, {{item.location.city.name}}</h6>
     </div>
-    <div *ngIf="!isRequestDisabled" class="custom-col">
+    <div class="custom-col">
       <button *ngIf="item.lostOrFound=='Lost'" (click)="claimButtonClick(item)" class="btn white-text light-green darken-3 claim-btn">Found It</button>
       <button *ngIf="item.lostOrFound=='Found'" (click)="claimButtonClick(item)" class="btn white-text light-green darken-3 claim-btn">Claim</button>
     </div>
@@ -27,3 +28,4 @@
   </div>
 </div>
 <div class="divider light-green darken-3"></div>
+</div>

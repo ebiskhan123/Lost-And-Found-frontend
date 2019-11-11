@@ -1,0 +1,30 @@
+.container
+{
+    padding-top: 1vw;
+    padding-bottom: 2vw;
+}
+
+.filter-div 
+{
+    position: fixed;
+    top: 64px;
+    width: 100%;
+    z-index: 5    
+}
+
+
+.hide
+{
+    display: none !important
+}
+
+@media only screen and (max-width: 600px) {
+   .row
+   {
+       display: block
+   }
+   .filter-div
+   {
+       top: 56px
+   }
+  }

@@ -28,19 +28,27 @@
           </select>
       </div>
       </div>
-      <div class="input-field">
-        <i class="material-icons prefix">room</i>
-        <input type="text" id="placeInput" [(ngModel)]="item.location" name="location">
-        <label for="placeInput">Place</label>
-        <span class="helper-text">For example, "Near Statue of Liberty, NY"</span>
+      <div class="row">
+        <div class="input-field transparent col s4">
+          <select name = "city" (change)="resetAreas()" [(ngModel)]="cityId" class="browser-default light-green lighten-5">
+            <option value="" disabled selected>City</option>
+            <option *ngFor="let city of cities" value="{{city._id}}" class="">{{city.name}}</option>
+          </select>
+        </div>
+        <div class="input-field transparent col s4 offset-s1">
+          <select name = "location"  [(ngModel)]="item.location._id" class="browser-default light-green lighten-5">
+            <option value="" disabled selected>Area</option>
+            <option *ngFor="let area of areas" value="{{area._id}}" class="">{{area.name}}</option>
+          </select>
+        </div>
       </div>
     </div>
     <div class="col s12 l6">
       <div class="row">
-        <div class="col s3">
+        <div class="col s12 l3">
           <img src="{{imagePath}}" alt="" class="responsive-img display-image z-depth-1">
         </div>
-        <div class="input-field col s5 valign-wrapper">
+        <div class="input-field col s12 l5 valign-wrapper">
           <input type="file" id="imageInput" (change)="setImage($event)" name="image">
         </div>
       </div>
@@ -48,11 +56,7 @@
         <div class="input-field transparent col s4">
           <select name = "category"  [(ngModel)]="item.category" class="browser-default light-green lighten-5">
               <option value="" disabled selected>Category</option>
-              <option value="Keys" class="">Keys</option>
-              <option value="Wallets" class="">Wallets</option>
-              <option value="Documents" class="">Documents</option>
-              <option value="Bags" class="">Bags</option>
-              <option value="Others" class="">Others</option>
+              <option *ngFor="let category of categories" value="{{category}}" class="">{{category}}</option>
             </select>
         </div>
         <div class="input-field col s6 offset-s1" (keydown)="keyDown($event)">

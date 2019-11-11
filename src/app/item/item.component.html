@@ -1,0 +1,40 @@
+<div class="content">
+  <h4 class="">Claim Item</h4>
+  <div class="row">
+    <div class="image-holder">
+      <img src="{{'./image/' + item.imageUrl}}" alt="" class="responsive-img materialboxed">
+    </div>
+    <div class="col s12 l6 offset-l1 valign-wrapper">
+    <div>
+      <h3 class="light-green-text text-darken-3">{{item.title}}</h3>
+      <div class="truncated">{{item.description}}</div>
+      <a href="" class="btn light-green lighten-5 z-depth-0 category-tag">
+        <i class="material-icons left">class</i>
+        {{item.category}}
+      </a>
+      <div *ngFor="let tag of item.tags" class="chip right">{{tag}}</div>
+      <div class="custom-grid"> 
+      <div class="custom-col">
+        <h5><span class="green-text" *ngIf="item.lostOrFound=='Found'">Found</span>
+        <span class="red-text" *ngIf="item.lostOrFound=='Lost'">Lost </span>
+        <span class="grey-text">&nbsp;&nbsp;{{months[item.date.getMonth()]}} {{item.date.getDate()}}, {{item.date.getFullYear()}}</span></h5>
+        <h6>{{item.location.name}}, {{item.location.city.name}}</h6>
+      </div>
+      <div class="custom-col">
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="divider light-green darken-3"></div>
+  <div class="input-field">
+    <i class="material-icons prefix">assignment</i>
+    <textarea [(ngModel)]="itemRequestMessage" class="materialize-textarea" id="messageInput" name="message"></textarea>
+    <label for="messageInput">Message</label>
+    <span class="helper-text">Leave a message for the person who user who posted the item so that they could contact you back</span>
+  </div>
+  <div>
+    <button class="btn right light-green darken-3 white-text" (click)="sendItemRequest()">Send</button>
+    <button class="btn right" routerLink="/items">Cancel</button>
+  </div>
+</div>
