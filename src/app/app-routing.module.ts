@@ -14,7 +14,7 @@ import { AboutUsComponent } from "src/app/about-us/about-us.component";
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'aboutUs', component: AboutUsComponent}  
+  {path: 'aboutUs', component: AboutUsComponent},  
   {path: 'signIn', component: SignInComponent, canActivate: [AuthGuard]},  
   {path: 'signUp', component: SignUpComponent, canActivate: [AuthGuard]},  
   {path: 'items', component: ItemsComponent},  

@@ -1,0 +1,13 @@
+@media only screen and (max-width: 1000px) {
+    .l-screen
+    {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1001px) {
+    .s-screen
+    {
+        display: none;
+    }
+}

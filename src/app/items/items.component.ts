@@ -17,22 +17,7 @@ export class ItemsComponent implements OnInit {
   itemRequestMessage: string;
 
   constructor(private itemsService: ItemsService, private routes: ActivatedRoute, private userGuard:UserGuard) {
-    this.itemOnFocus = mockItems[0];
    }
-
-  setItemRequestForm = (item) => {
-    if(this.userGuard.canActivate(this.routes.snapshot)){}
-    this.itemOnFocus = item;
-    if(this.itemOnFocus.lostOrFound == 'Lost')
-      {
-        this.itemRequestAction = this.sendFoundRequest;
-      }
-    else
-      {
-        this.itemRequestAction = this.sendClaimRequest;
-      }
-    this.showItemRequestModal();    
-  }
 
   applyFilters = () => {
     this.setItems()
@@ -46,40 +31,12 @@ export class ItemsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.items = mockItems
     this.routes.params.subscribe(params => {
       if(params['lostOrFound'])
       this.filters.lostOrFound = params['lostOrFound'];
       this.setItems();
     })
   }
-
-  sendItemRequest() {
-    this.itemRequestAction()
-    .subscribe((result) => {
-      if(result.error) {
-        console.log(result.error);
-      }
-      this.hideItemRequestModal();
-    })
-  }
-
-  sendClaimRequest = () => {
-    return this.itemsService.sendItemClaimRequest(this.itemRequestMessage, this.itemOnFocus._id);
-  }
-
-  sendFoundRequest = () => {
-    return this.itemsService.sendItemFoundRequest(this.itemRequestMessage, this.itemOnFocus._id);    
-  }
-
-  showItemRequestModal = () => {
-    document.getElementById('itemClaimModal').style.display = 'block';
-  }
-
-  hideItemRequestModal = () => {
-    document.getElementById('itemClaimModal').style.display = 'none';    
-  }
-
 }
 
 const mockItems: Item[] = [

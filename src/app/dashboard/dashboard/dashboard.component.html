@@ -1,3 +1,4 @@
 <div class="section container">
+  <h6 *ngIf="!items.length" class="center grey-text">Dashboard is empty. You can report about lost or found items from home page</h6>
   <app-dashboard-item *ngFor="let item of items, index as i" [item]="item"></app-dashboard-item>
 </div>
