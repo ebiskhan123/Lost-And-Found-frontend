@@ -10,13 +10,19 @@ import { AuthGuard } from './guards/auth.guard';
 import { UserGuard } from './guards/user.guard';
 import { ItemComponent } from "src/app/item/item.component";
 import { AboutUsComponent } from "src/app/about-us/about-us.component";
+import { ForgotPasswordComponent } from "src/app/forgot-password/forgot-password.component";
+import { ResetPasswordComponent } from "src/app/reset-password/reset-password.component";
+import { TermsAndConditionsComponent } from "src/app/terms-and-conditions/terms-and-conditions.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'aboutUs', component: AboutUsComponent},  
+  {path: 'termsAndConditions', component: TermsAndConditionsComponent},  
   {path: 'signIn', component: SignInComponent, canActivate: [AuthGuard]},  
-  {path: 'signUp', component: SignUpComponent, canActivate: [AuthGuard]},  
+  {path: 'signUp', component: SignUpComponent, canActivate: [AuthGuard]},
+  {path: 'forgotPassword', component: ForgotPasswordComponent, canActivate: [AuthGuard]},  
+  {path: 'resetPassword/:userId/:resetToken', component: ResetPasswordComponent, canActivate: [AuthGuard]},  
   {path: 'items', component: ItemsComponent},  
   {path: 'items/:lostOrFound', component: ItemsComponent},
   {path: 'item/:itemId', component: ItemComponent, canActivate: [UserGuard]},  
@@ -31,4 +37,4 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 
-export const routingComponents = [HomeComponent, AboutUsComponent, SignInComponent, SignUpComponent, AddItemComponent, ItemComponent];
+export const routingComponents = [HomeComponent, AboutUsComponent, TermsAndConditionsComponent, ResetPasswordComponent, ForgotPasswordComponent, SignInComponent, SignUpComponent, AddItemComponent, ItemComponent];
