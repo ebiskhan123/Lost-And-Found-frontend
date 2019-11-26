@@ -13,6 +13,8 @@ import { AboutUsComponent } from "src/app/about-us/about-us.component";
 import { ForgotPasswordComponent } from "src/app/forgot-password/forgot-password.component";
 import { ResetPasswordComponent } from "src/app/reset-password/reset-password.component";
 import { TermsAndConditionsComponent } from "src/app/terms-and-conditions/terms-and-conditions.component";
+import { SignUpMessageComponent } from "src/app/sign-up-message/sign-up-message.component";
+import { VerifyEmailComponent } from "src/app/verify-email/verify-email.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,7 +23,9 @@ const routes: Routes = [
   {path: 'termsAndConditions', component: TermsAndConditionsComponent},  
   {path: 'signIn', component: SignInComponent, canActivate: [AuthGuard]},  
   {path: 'signUp', component: SignUpComponent, canActivate: [AuthGuard]},
+  {path: 'signUpMessage', component: SignUpMessageComponent, canActivate: [AuthGuard]},
   {path: 'forgotPassword', component: ForgotPasswordComponent, canActivate: [AuthGuard]},  
+  {path: 'verifyEmail/:userId/:verificationToken', component: VerifyEmailComponent, canActivate: [AuthGuard]},  
   {path: 'resetPassword/:userId/:resetToken', component: ResetPasswordComponent, canActivate: [AuthGuard]},  
   {path: 'items', component: ItemsComponent},  
   {path: 'items/:lostOrFound', component: ItemsComponent},
@@ -37,4 +41,4 @@ const routes: Routes = [
 
 export class AppRoutingModule { }
 
-export const routingComponents = [HomeComponent, AboutUsComponent, TermsAndConditionsComponent, ResetPasswordComponent, ForgotPasswordComponent, SignInComponent, SignUpComponent, AddItemComponent, ItemComponent];
+export const routingComponents = [HomeComponent, AboutUsComponent, VerifyEmailComponent, SignUpMessageComponent, TermsAndConditionsComponent, ResetPasswordComponent, ForgotPasswordComponent, SignInComponent, SignUpComponent, AddItemComponent, ItemComponent];

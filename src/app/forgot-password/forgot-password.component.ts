@@ -31,6 +31,12 @@ export class ForgotPasswordComponent implements OnInit {
     }) 
   }
 
+  keyDown = (event) => {
+    if (event.key === "Enter") {
+      this.sendPasswordRecoveryRequest();
+    }
+  }
+
   showMessage = () => {
     document.getElementById("emailEntry").classList.add('hide')
     document.getElementById("messageDiv").classList.remove('hide')

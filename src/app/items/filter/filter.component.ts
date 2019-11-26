@@ -10,10 +10,10 @@ export class FilterComponent implements OnInit {
 
   @Input('filters') filters
   @Input('applyFilters') applyFilters
-  private cityId = ''
-  private cities: any = []
-  private areas: any = []
-  private categories: any = []
+  cityId = ''
+  cities: any = []
+  areas: any = []
+  categories: any = []
 
   constructor(private itemsService:ItemsService) { }
 

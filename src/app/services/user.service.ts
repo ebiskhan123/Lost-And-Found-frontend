@@ -27,7 +27,6 @@ export class UserService {
         }
       )          
     )
-    
   }
 
 
@@ -37,8 +36,7 @@ export class UserService {
       mapTo(true),
       catchError(
         (error) => {
-          console.log(error);
-          return of(false);
+          return of({error: error});
         }
       )
     );
@@ -54,8 +52,15 @@ export class UserService {
   getUserName = (userId, resetToken) => {
     let url = `${API_URL}user/${userId}/${resetToken}`
     return this.http.get(url).pipe(
-      tap(response => {return of({data:response})}),
       catchError((error) => {return of({error: error})})
+    )
+  }
+
+  verifyEmail = (userId, verificationToken) => {
+    let url = `${API_URL}verifyEmail/${userId}/${verificationToken}`
+    return this.http.patch(url, null).pipe(
+      mapTo({}),
+      catchError(error => {return of({error: error})})
     )
   }
 

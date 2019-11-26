@@ -12,13 +12,13 @@ import { AppService } from "src/app/services/app.service";
 export class SignUpComponent implements OnInit {
   forwardTo: any;
 
-  private user = {
+  user = {
     name: '',
     email: '',    
     password: ''
   }
 
-  private password: any = '';
+  password: any = '';
 
   validateUser = () => {
     return new Promise((resolve, reject) => {
@@ -32,7 +32,7 @@ export class SignUpComponent implements OnInit {
       let length = this.password.lenght * 1
       let passwordValidator = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/
       if(!passwordValidator.test(this.password))
-        reject('Password is too short')
+        reject('Password should have atleast 8 characters')
       passwordValidator = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{8,16}$/
       if(!passwordValidator.test(this.password))
         reject('Password is not strong enough')
@@ -51,7 +51,7 @@ export class SignUpComponent implements OnInit {
           if(this.forwardTo)
             this.router.navigateByUrl(`/${this.forwardTo}`)
           else        
-            this.router.navigateByUrl('/signIn')
+            this.router.navigateByUrl('/signUpMessage')
         }
         else {
           this.resetValues()

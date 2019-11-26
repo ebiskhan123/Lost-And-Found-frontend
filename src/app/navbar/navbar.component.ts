@@ -16,26 +16,30 @@ export class NavbarComponent implements OnInit {
     })
   }
   
-  private showMobileMenu = () => {
+  showMobileMenu = () => {
     document.getElementById('mobileMenu').style.transform = 'translateX(0)';
     setTimeout(() => {
       document.addEventListener('click', this.hideMobileMenu);
     }, 300);
   }
-  private hideMobileMenu = () => {
+  hideMobileMenu = () => {
     document.getElementById('mobileMenu').style.transform = 'translateX(-105%)';
     document.removeEventListener('click', this.hideMobileMenu);
   }
 
-  private showDropDown = () => {
+  showDropDown = () => {
     this.repositionDropDown();
     let dropDrown = document.getElementById('navDropDown');
     dropDrown.style.display = 'block';
     dropDrown.style.opacity = '1';
     document.addEventListener('click', this.hideDropDown);
   }
+
+  isLoggedIn = () => {
+    return this.userService.isLoggedIn()
+  }
   
-  private hideDropDown = (event) => {
+  hideDropDown = (event) => {
     let dropDrown = document.getElementById('navDropDown');
     dropDrown.style.display = 'none';
     dropDrown.style.opacity = '0';
@@ -49,7 +53,7 @@ export class NavbarComponent implements OnInit {
     dropDrown.style.top = itemTab.getBoundingClientRect().bottom + 'px';
   }
 
-  private stickNavbar = (event) => {
+  stickNavbar = (event) => {
     let navbar = document.getElementById('navBar')
     let navOffset = document.getElementById('navOffset')
     if (window.pageYOffset >= navbar.offsetTop) {

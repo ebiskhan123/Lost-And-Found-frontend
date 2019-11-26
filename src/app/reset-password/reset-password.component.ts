@@ -14,7 +14,7 @@ export class ResetPasswordComponent implements OnInit {
   user = {name: '', password: ''}
   userId = ''
   resetToken = ''
-  password = ''
+  password: any = ''
 
   constructor(private app: AppService, private userService: UserService, private routes: ActivatedRoute, private router: Router) { }
 
@@ -25,7 +25,7 @@ export class ResetPasswordComponent implements OnInit {
       let length = this.password.lenght * 1
       let passwordValidator = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/
       if(!passwordValidator.test(this.password))
-        reject('Password is too short')
+        reject('Password should have atleast 8 characters')
       passwordValidator = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{8,16}$/
       if(!passwordValidator.test(this.password))
         reject('Password is not strong enough')
@@ -53,6 +53,12 @@ export class ResetPasswordComponent implements OnInit {
     .catch(error => this.app.makeToast(error))
   }
 
+  keyDown = (event) => {
+    if (event.key === "Enter") {
+      this.resetPassword();
+    }
+  }
+
   setUser = () => {
     this.userService.getUserName(this.userId, this.resetToken)
     .subscribe((response: any) => {
@@ -64,7 +70,7 @@ export class ResetPasswordComponent implements OnInit {
             this.app.makeToast(`Couldn't process request`)
         this.router.navigateByUrl('signIn')
         }
-      this.user.name = response.data.name
+      this.user.name = response.name
     })
   }
 

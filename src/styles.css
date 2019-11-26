@@ -12,3 +12,18 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.hide
+{
+    display: none !important
+}
+
+.ultimate-cover
+{
+    z-index: 999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}

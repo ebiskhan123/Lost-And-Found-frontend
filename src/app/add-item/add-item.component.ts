@@ -11,17 +11,18 @@ import { AppService } from "src/app/services/app.service";
 })
 export class AddItemComponent implements OnInit {
   
-  private item: Item = <Item> {lostOrFound: "Lost", category: "", tags: [], location:{_id:''}};
-  private itemImage: any;
-  private tag:string = '';
-  private imagePath = '../../assets/images/noImage.jpg';
-  private cityId = '';
-  private areaId = '';
-  private cities: any = []
-  private areas: any = []
-  private categories: any = []
+  item: Item = <Item> {lostOrFound: "Lost", category: "", tags: [], location:{_id:''}};
+  itemImage: any;
+  tag:string = '';
+  imagePath = '../../assets/images/noImage.jpg';
+  cityId = '';
+  areaId = '';
+  cities: any = []
+  areas: any = []
+  categories: any = []
 
   saveItem = () => {
+    this.app.activateUltimateCover()
     let formData = new FormData()
     formData.append('item', JSON.stringify(this.item));
     formData.append('image', this.itemImage);
@@ -34,6 +35,7 @@ export class AddItemComponent implements OnInit {
         this.app.makeToast(result.error.message)
         console.log(result.error);
       }
+      this.app.deactivateUltimateCover()
     })
   }
 

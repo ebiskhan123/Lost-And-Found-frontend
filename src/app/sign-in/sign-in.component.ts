@@ -11,20 +11,22 @@ import { AppService } from "src/app/services/app.service";
 })
 export class SignInComponent implements OnInit {
   forwardTo: any;
-  private credentials = { email: '', password: '' };
+  credentials = { email: '', password: '' };
   
   signIn = () => {
     this.userService.signIn(this.credentials)
-    .subscribe((signedIn) => {
-      if(signedIn) {
-        if(this.forwardTo)
-          this.router.navigateByUrl(`/${this.forwardTo}`); 
-        else       
-          this.router.navigateByUrl('/dashboard');
-      }
-      else
-        {
+    .subscribe((result: any) => {
+      if(result.error) {
+        if(result.error.status === 403)
+          this.app.makeToast('Verify Your Email')
+        else
           this.app.makeToast('Invalid Credentials')
+      }
+      else {
+          if(this.forwardTo)
+            this.router.navigateByUrl(`/${this.forwardTo}`); 
+          else       
+            this.router.navigateByUrl('/dashboard');
         }
     })
   }
