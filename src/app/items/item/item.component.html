@@ -11,7 +11,9 @@
       <i class="material-icons left">class</i>
       {{item.category}}
     </a>
-    <div *ngFor="let tag of item.tags" class="chip right">{{tag}}</div>
+    <div>
+      <div *ngFor="let tag of item.tags" class="chip right">{{tag}}</div>
+    </div>
     <div class="custom-grid"> 
     <div class="custom-col">
       <h5><span class="green-text" *ngIf="item.lostOrFound=='Found'">Found</span>
