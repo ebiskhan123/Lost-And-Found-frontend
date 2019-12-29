@@ -1,5 +1,5 @@
 <div id="navOffset"></div>
-<nav class="light-green darken-3 nav-z" id="navBar">
+<nav class="green accent-2 nav-z" id="navBar">
   <div class="nav-wrapper container">
     <a (click)="showMobileMenu()" class="sidenav-trigger">
       <i class="material-icons">menu</i>
@@ -25,9 +25,9 @@
       <li *ngIf="isLoggedIn()"><a (click)="logOut()">Log Out</a></li>      
     </ul>
     <ul class="sidenav" id="mobileMenu">
-      <li><a class="light-green-text text-darken-3" routerLink="/home" >Home</a></li>
+      <li><a class="green-text text-accent-2" routerLink="/home" >Home</a></li>
       <li><div class="divider"></div></li>
-      <li><a routerLink="/items" class="light-green-text text-darken-3">Items
+      <li><a routerLink="/items" class="green-text text-accent-2">Items
       </a></li>
       <li><div class="divider"></div></li>
       <div class="side-nav-padded">
@@ -35,20 +35,20 @@
       <li><a class="green-text" routerLink="/items/Found" >Found</a></li>      
       </div>
       <li><div class="divider"></div></li>
-      <li><a class="light-green-text text-darken-3" routerLink="/aboutUs" >About Us</a></li>
+      <li><a class="green-text text-accent-2" routerLink="/aboutUs" >About Us</a></li>
       <li><div class="divider"></div></li>
       <li *ngIf="isLoggedIn()">
-        <a class="light-green-text text-darken-3" routerLink="/dashboard" >Dashboard</a>
+        <a class="green-text text-accent-2" routerLink="/dashboard" >Dashboard</a>
       </li>
       <li *ngIf="!isLoggedIn()">
-        <a class="light-green-text text-darken-3" routerLink="/signIn" >Sign In</a>
+        <a class="green-text text-accent-2" routerLink="/signIn" >Sign In</a>
       </li>
       <li><div class="divider"></div></li>
       <li *ngIf="!isLoggedIn()">
-        <a class="light-green-text text-darken-3" routerLink="/signUp" >Sign Up</a>
+        <a class="green-text text-accent-2" routerLink="/signUp" >Sign Up</a>
       </li>      
       <li *ngIf="isLoggedIn()">
-        <a class="light-green-text text-darken-3" (click)="logOut()">Log Out</a>
+        <a class="green-text text-accent-2" (click)="logOut()">Log Out</a>
       </li>
       <li><div class="divider"></div></li>
     </ul>
