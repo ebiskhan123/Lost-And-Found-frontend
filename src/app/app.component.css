@@ -2,10 +2,8 @@
     display: none; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
     margin-left: -125px; /* Divide value of min-width by 2 */
-  
-      
-    background-image: url('../../assets/images/bg1.jpg') ;
-    color: #fff; /* White text color */
+    background-image: url('../assets/images/bg1.jpeg') ;
+    color: #fff; /* White text color *
     text-align: center; /* Centered text */
     border-radius: 2px; /* Rounded borders */
     padding: 16px; /* Padding */
@@ -15,28 +13,33 @@
     bottom: 30px; /* 30px from the bottom */
   }
   
+  
   .show-toast {
     display: block !important;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
   }
   
-  @-webkit-keyframes fadein {
+  @-webkit-keyframes fadein 
+  {
     from {bottom: 0; opacity: 0;} 
     to {bottom: 30px; opacity: 1;}
   }
   
-  @keyframes fadein {
+  @keyframes fadein 
+  {
     from {bottom: 0; opacity: 0;}
     to {bottom: 30px; opacity: 1;}
   }
   
-  @-webkit-keyframes fadeout {
+  @-webkit-keyframes fadeout
+  {
     from {bottom: 30px; opacity: 1;} 
     to {bottom: 0; opacity: 0;}
   }
   
-  @keyframes fadeout {
+  @keyframes fadeout
+  {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
   }
